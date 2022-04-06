@@ -33,13 +33,7 @@ function start(event){
     context.beginPath();
     context.moveTo(event.clientX - canvas.offsetLeft,
         event.clientY - canvas.offsetTop);
-    context.lineTo(event.clientX - canvas.offsetLeft,
-        event.clientY - canvas.offsetTop);
-    context.strokeStyle = draw_color;
-    context.lineWidth = draw_width;
-    context.lineCap = "round";
-    context.lineJoin = "round";
-    context.stroke();
+    draw(event);
     event.preventDefault();
 }
 
