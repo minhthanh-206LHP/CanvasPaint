@@ -18,9 +18,8 @@ function change_color(element){
     draw_color = element.style.background;
 }
 
-
-// canvas.addEventListener("touchstart",start,false);
-// canvas.addEventListener("touchmove",draw,false);
+canvas.addEventListener("touchstart",start,false);
+canvas.addEventListener("touchmove",draw,false);
 canvas.addEventListener("mousedown",start,false);
 canvas.addEventListener("mousemove",draw,false);
 
@@ -36,6 +35,11 @@ function start(event){
         event.clientY - canvas.offsetTop);
     context.lineTo(event.clientX - canvas.offsetLeft,
         event.clientY - canvas.offsetTop);
+    context.strokeStyle = draw_color;
+    context.lineWidth = draw_width;
+    context.lineCap = "round";
+    context.lineJoin = "round";
+    context.stroke();
     event.preventDefault();
 }
 
