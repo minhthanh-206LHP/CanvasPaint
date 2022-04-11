@@ -11,8 +11,16 @@ let draw_color = "black";
 let draw_width = "2";
 let is_drawing = false;
 
+let free_draw = true;
+let draw_line = false;
+let draw_rect = false;
+let draw_cir = false;
+
 let restore_array = []
 let index = -1
+
+let X = 0;
+let Y = 0;
 
 function change_color(element){
     draw_color = element.style.background;
@@ -33,11 +41,14 @@ function start(event){
     context.beginPath();
     context.moveTo(event.clientX - canvas.offsetLeft,
         event.clientY - canvas.offsetTop);
+    X = event.clientX;
+    Y = event.clientY;
     draw(event);
     event.preventDefault();
 }
 
 function draw(event){
+    if (!free_draw) return;
     if (is_drawing) {
         context.lineTo(event.clientX - canvas.offsetLeft,
             event.clientY - canvas.offsetTop);
@@ -51,10 +62,42 @@ function draw(event){
 }
 
 function stop(event){
-    if (is_drawing){
+    if (is_drawing){ 
+        if (draw_line) {
+            context.strokeStyle = draw_color;
+            context.lineWidth = draw_width;
+            context.lineTo(event.clientX - canvas.offsetLeft,
+                event.clientY - canvas.offsetTop);
+        }
+        else if (draw_rect){
+            let x = event.clientX;
+            let y = event.clientY;
+            let w = Math.abs(X-x);
+            let h = Math.abs(Y-y);
+            if (X > x) X = x;
+            if (Y > y) Y = y;
+            context.strokeStyle = draw_color;
+            context.lineWidth = draw_width;
+            context.strokeRect(X - canvas.offsetLeft,
+                Y - canvas.offsetTop,
+                w,h);
+
+        }
+        else if (draw_cir) {
+            let x = event.clientX;
+            let y = event.clientY;
+            let r = Math.sqrt((X - x) * (X - x) + (Y - y) * (Y - y))
+            context.strokeStyle = draw_color;
+            context.lineWidth = draw_width;
+            context.moveTo(X - canvas.offsetLeft + r,
+                Y - canvas.offsetTop);
+            context.arc(X - canvas.offsetLeft,
+                Y - canvas.offsetTop, r, 0 ,2 * Math.PI);
+        }
         context.stroke();
         context.closePath();
         is_drawing = false;
+       
     }
     event.preventDefault();
 
@@ -82,4 +125,32 @@ function undo_last(){
         context.putImageData(restore_array[index],0 ,0);
     }
 
+}
+
+function draw_Line() {
+    free_draw = false;
+    draw_line = true;
+    draw_rect = false;
+    draw_cir = false;
+}
+
+function FreeDraw() {
+    free_draw = true;
+    draw_line = false;
+    draw_rect = false;
+    draw_cir = false;
+}
+
+function draw_Rect(){
+    draw_rect = true;
+    free_draw = false;
+    draw_line = false;
+    draw_cir = false;
+}
+
+function draw_Circ() {
+    draw_cir = true;
+    draw_rect = false;
+    free_draw = false;
+    draw_line = false;
 }

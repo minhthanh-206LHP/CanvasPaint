@@ -10,9 +10,16 @@
 <body>
     <div class="field">
         <canvas id="canvas"></canvas>
-        <div class="tools">
+        <div class="drawTools">
             <button onClick="undo_last()" type="button" class="button">Undo</button>
             <button onClick="clear_canvas()" type="button" class="button">Clear</button>
+            <button onClick="FreeDraw()" type="button" class="button">Pen</button>
+            <button onClick="draw_Line()" type="button" class="button">Line</button>
+            <button onClick="draw_Rect()" type="button" class="button">Rectangle</button>
+            <button onClick="draw_Circ()" type="button" class="button">Circle</button>
+            
+        </div>
+        <div class = "penTools">
 
             <div onClick="change_color(this)" class="color-field" style="background: red;"></div>
             <div onClick="change_color(this)" class="color-field" style="background: blue;"></div>

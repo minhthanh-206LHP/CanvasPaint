@@ -15,7 +15,7 @@ body {
     background-color: #313131;
 }
 
-.tools .color-field{
+.penTools .color-field{
     height: 40px;
     width: 40px;
     min-width: 40px;
@@ -29,9 +29,9 @@ body {
     margin: 0 10px;
 }
 
-.tools .button {
+.drawTools .button {
     align-self: center;
-    width: 100px;
+    width: 75px;
     height: 40px;
     border:2px solid white;
     cursor: pointer;
