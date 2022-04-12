@@ -154,3 +154,9 @@ function draw_Circ() {
     free_draw = false;
     draw_line = false;
 }
+
+function saveAs(){
+    var image = canvas.toDataURL("image/jpg")
+    var a = document.getElementById("download")
+    a.href = image
+}

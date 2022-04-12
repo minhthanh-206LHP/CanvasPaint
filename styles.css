@@ -41,6 +41,18 @@ body {
     margin: 0 10px;
 }
 
+.functionButton .button{
+    align-self: center;
+    width: 75px;
+    height: 40px;
+    border:2px solid white;
+    cursor: pointer;
+    color: white;
+    background: #222;
+    font-weight: bold;
+    margin: 0 10px;
+}
+
 .color-picker{
     align-self: center;
     margin: 0 15px;
