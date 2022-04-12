@@ -96,7 +96,6 @@ function stop(event){
         }
         context.stroke();
         context.closePath();
-        is_drawing = false;
        
     }
     event.preventDefault();
@@ -105,6 +104,13 @@ function stop(event){
         restore_array.push(context.getImageData(0,0,canvas.width,canvas.height));
         index += 1;
     }
+    else {
+        if (is_drawing) {
+            restore_array.push(context.getImageData(0,0,canvas.width,canvas.height));
+            index += 1;
+        }
+    }
+    is_drawing = false;
 }
 
 function clear_canvas() {
@@ -124,7 +130,6 @@ function undo_last(){
         restore_array.pop();
         context.putImageData(restore_array[index],0 ,0);
     }
-
 }
 
 function draw_Line() {
