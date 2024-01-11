@@ -1,6 +1,4 @@
-# CanvasPaint
-Paint-like app on canvas for project. 
-
+White board app
 
 
 https://minhthanh-206lhp.github.io/CanvasPaint/
