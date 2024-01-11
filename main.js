@@ -33,6 +33,20 @@ canvas.addEventListener("mousemove",draw,false);
 canvas.addEventListener("mouseup", stop, false);
 canvas.addEventListener("mouseout", stop, false);
 
+//resize listner
+window.addEventListener(
+    "resize",
+    () => {
+        var ctx = canvas.getContext("2d")
+        
+        ctx.canvas.width = window.innerWidth - 60;
+      
+        ctx.fillStyle = "white";
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+    },
+    false
+  );
+
 
 function start(event){
     is_drawing = true;
